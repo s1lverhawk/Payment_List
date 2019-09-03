@@ -1,5 +1,5 @@
 var my_news = [
-    {
+    /*{
         author: 'Вася Пупкин',
         text: 'В четверг, четвёртого числа...'
     },
@@ -10,54 +10,61 @@ var my_news = [
     {
         author: 'Гость',
         text: 'Бесплатно! Скачать! Лучший в мире сайт - http://localhost:3000'
-    }
+    }*/
 ];
 
 
-
-var Comments = React.createClass({
+var Article = React.createClass({
     render: function() {
-        return (
-            <div className="comments">
-                Нет новостей - комментировать нечего.
-            </div>
-        );
-    }
-})
+        var author = this.props.data.author,
+            text = this.props.data.text;
 
+        return (
+            <div className="article">
+                <p className="news__author">{author}:</p>
+                <p className="news__text">{text}</p>
+            </div>
+        )
+    }
+});
 
 var News = React.createClass({
     render: function() {
         var data = this.props.data;
-        var newsTemplates = data.map(function(item,index) {
+        var newsTemplates;
+        
+        if (data.length > 0) {
+            newsTemplates = data.map(function(item,index) {
             return (
                 <div key={index}>
-                    <p className="news__author">{item.author}:</p>
-                    <p className="news__text">{item.text}</p>
+                    <Article data={item} />
                 </div>
                 )
         })
+    } else {
+        newsTemplates = <p>К сожалению новостей нет</p>
+    }
 
         return (
             <div className="news">
                 {newsTemplates}
+                <strong className={'news__count ' + (data.length > 0 ? '':'none')}>Всего новостей: {data.length}</strong>
             </div>
         );
     }
-})
+});
 
 
 var App = React.createClass({
     render: function() {
         return (
             <div className="app">
-                Всем привет, я компонент App! Я умею отображать новости.
+                <h3>Новости</h3>
                 <News data={my_news} /> {/* Добавили свойство data */}
-                <Comments />
             </div>
         );
     }
-})
+});
 
 ReactDOM.render(
     <App />,
