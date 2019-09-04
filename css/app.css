@@ -20,12 +20,44 @@ p {
     padding: 3px 5px;
 }
 
-.news_author {
+.name__payment {
     text-decoration: underline;
     color: rgb(51, 83, 19)
 }
 
-.news_count {
+.payments__count {
     margin: 10px 0 0 0;
     display: block;
+}
+
+.add {
+    margin: 0 5px 5px 0;
+    width: 250px;
+    border: 1px dashed rgba(0, 158, 0, 0.82);
+    padding: 5px;
+}
+
+.add_author, .add__text, .add__btn, .add__checkrule {
+    display: block;
+    margin: 5px 5px 5px 0;
+    padding: 5px;
+    width: 94%;
+    border: 1px solid rgba(0, 158, 0, 0.82)
+}
+
+.add__checkrule {
+    border: none;
+    font-size: 12px;
+}
+
+.add__btn {
+    box-sizing: content-box;
+    color: rgb(0, 0, 0);
+    text-transform: capitalize;
+    background: rgb(255, 255, 255);
+}
+
+.add__btn:disabled {
+    background: rgb(148, 148, 148);
+    color: rgb(88, 88, 88);
 }
